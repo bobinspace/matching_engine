@@ -15,9 +15,9 @@
 - What about the value of the std::map? Since we want FIFO, a queue-like container will be the most natural, since we will be dealing with just the "ends" of the container, popping off the oldest orders first.
 - In terms of actual implementation, a std::queue, or better yet, a std::deque without the burden of being an adapted container like std::queue, would serve very well. But in real life, this has limitations:
 - In real life, we need to consider 2 aspects of the matching engine:
-1) It needs to PRIORITISE which orders to fill first
-2) It needs to ALLOCATE how much to consume from each resting order
-Consider the prioritisation requirement: If we were to use a std::deque, we would be pretty much stuck with a FIFO/LIFO prioritisation scheme, as element updates within the deque will be expensive. Therefore, a map would be more pragmatic because it allows us to plug in our own custom comparators, aka define our own prioritisation scheme.
+  - 1) It needs to PRIORITISE which orders to fill first
+  - 2) It needs to ALLOCATE how much to consume from each resting order.
+- Consider the prioritisation requirement: If we were to use a std::deque, we would be pretty much stuck with a FIFO/LIFO prioritisation scheme, as element updates within the deque will be expensive. Therefore, a map would be more pragmatic because it allows us to plug in our own custom comparators, aka define our own prioritisation scheme.
 (As for the "allocation" requirement, we will discuss in the next section.)
 - As for the collection of all order books in the market, this is straightforward: std::map with instrument as key and orderbook as value.
 
